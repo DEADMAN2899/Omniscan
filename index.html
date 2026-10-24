@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d0e">
+<meta name="description" content="Point your camera at something and ask what it is. Identification runs on your phone.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OmniScan">
+<title>OmniScan</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top gutter">
+    <div class="brand">Omni<b>Scan</b></div>
+    <div class="route" id="route" title="Where analysis runs"><span class="dot" id="routeDot"></span><span id="routeText">Starting</span></div>
+    <button class="iconbtn" id="evalBtn" aria-label="Test set"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 14h9"/></svg></button>
+    <button class="iconbtn" id="historyBtn" aria-label="Saved scans"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
+    <button class="iconbtn" id="settingsBtn" aria-label="Settings and diagnostics"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
+  </header>
+
+  <main class="stage" id="stage">
+    <video id="video" playsinline muted autoplay hidden></video>
+    <img id="photo" alt="Captured photo" hidden>
+    <canvas id="overlay"></canvas>
+    <div class="hud" id="hud" hidden>
+      <span id="hudPreview">preview — fps</span><span id="hudAnalysis">analysis — fps</span><span id="hudLat">det — ms</span><span id="hudEmb">id — ms</span>
+    </div>
+    <div class="work" id="work" hidden></div>
+    <div class="badge" id="heldTag" hidden>FRAME HELD</div>
+    <div class="intro" id="intro">
+      <div class="intro-card">
+        <div class="reticle"><i></i><i></i><i></i><i></i><b></b></div>
+        <h1>Point it at something. Ask what it is.</h1>
+        <p>Detection, identification, text reading and barcodes all run on this phone. Nothing leaves it unless you approve it.</p>
+        <div class="row">
+          <button class="btn primary" id="startLive">Start live camera</button>
+          <button class="btn" id="takePhoto">Use a photo</button>
+        </div>
+        <div class="status" id="bootStatus">Starting…</div>
+        <div class="bar" id="bootBar"><i></i></div>
+      </div>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" capture="environment" hidden>
+  </main>
+
+  <section class="deck gutter">
+    <div class="chips" id="chips" role="list"><span class="empty">No objects tracked yet</span></div>
+    <div class="answer" id="answer" hidden></div>
+    <form class="ask" id="askForm" autocomplete="off">
+      <input id="askInput" type="text" placeholder="Ask about what you see…" enterkeyhint="send" aria-label="Question">
+      <button class="btn primary" id="askBtn" type="submit">Ask</button>
+    </form>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Privacy mode" id="privacySeg">
+        <button type="button" data-p="local" aria-pressed="false">Local only</button>
+        <button type="button" data-p="ask" aria-pressed="true">Ask first</button>
+        <button type="button" data-p="session" aria-pressed="false">Session OK</button>
+      </div>
+      <button class="btn" id="saveBtn" type="button" disabled>Save</button>
+      <button class="shutter" id="shutter" type="button" aria-label="Hold frame"></button>
+    </div>
+  </section>
+</div>
+<div id="sheets"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+ "model": "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M",
+ "license": "MIT (microsoft/Cream TinyCLIP)",
+ "logit_scale": 50.00431823730469,
+ "dim": 512,
+ "count": 2853,
+ "templates": [
+  "a photo of a {}.",
+  "a close-up photo of a {}.",
+  "a photo of the {}, an object.",
+  "a blurry photo of a {}."
+ ],
+ "mean": [
+  0.48145466,
+  0.4578275,
+  0.40821073
+ ],
+ "std": [
+  0.26862954,
+  0.26130258,
+  0.27577711
+ ],
+ "size": 224
+}
