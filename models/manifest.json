@@ -1,5 +1,5 @@
 {
- "version": "20261024010654",
+ "version": "20261024015357",
  "runtime": {
   "ort-wasm": {
    "parts": [
@@ -97,6 +97,33 @@
     0.27577711
    ],
    "quantization": "int8 per-channel (MatMul)",
+   "vocab": {
+    "labels": "vocab/tiny/labels.json",
+    "emb": "vocab/tiny/emb.i8",
+    "scale": "vocab/tiny/emb.scale",
+    "bias": "vocab/tiny/bias.f32",
+    "dim": 512,
+    "logitScale": 50.00431823730469,
+    "count": 2852,
+    "fusion": {
+     "floor": 0.8,
+     "k": 400,
+     "lambda": 0.0,
+     "teach": 0.88
+    },
+    "parents": {
+     "coco": [
+      "vocab/det_coco.json",
+      "vocab/tiny/par_coco.i8",
+      "vocab/tiny/par_coco.scale"
+     ],
+     "o365": [
+      "vocab/det_o365.json",
+      "vocab/tiny/par_o365.i8",
+      "vocab/tiny/par_o365.scale"
+     ]
+    }
+   },
    "parts": [
     "models/clip_vision.44ef52f066.part00.bin",
     "models/clip_vision.44ef52f066.part01.bin",
@@ -107,6 +134,64 @@
    ],
    "size": 46101585,
    "sha256": "44ef52f066f5c9e6fd3242618676bb5a927af78b693d6bf6d7f4ef1434ae49ab"
+  },
+  "clip_best": {
+   "name": "SigLIP 2 B/32",
+   "task": "image_embedding",
+   "source": "google/siglip2-base-patch32-256",
+   "license": "Apache-2.0",
+   "input": 256,
+   "mean": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "std": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "quantization": "4-bit weight-only (MatMulNBits, block 32)",
+   "vocab": {
+    "labels": "vocab/siglip/labels.json",
+    "emb": "vocab/siglip/emb.i8",
+    "scale": "vocab/siglip/emb.scale",
+    "bias": "vocab/siglip/bias.f32",
+    "dim": 768,
+    "logitScale": 111.83257293701172,
+    "count": 23550,
+    "fusion": {
+     "floor": 0.0,
+     "k": 60,
+     "lambda": 0.75,
+     "teach": 0.92
+    },
+    "parents": {
+     "coco": [
+      "vocab/det_coco.json",
+      "vocab/siglip/par_coco.i8",
+      "vocab/siglip/par_coco.scale"
+     ],
+     "o365": [
+      "vocab/det_o365.json",
+      "vocab/siglip/par_o365.i8",
+      "vocab/siglip/par_o365.scale"
+     ]
+    }
+   },
+   "parts": [
+    "models/siglip_vision.48c6593a3a.part00.bin",
+    "models/siglip_vision.48c6593a3a.part01.bin",
+    "models/siglip_vision.48c6593a3a.part02.bin",
+    "models/siglip_vision.48c6593a3a.part03.bin",
+    "models/siglip_vision.48c6593a3a.part04.bin",
+    "models/siglip_vision.48c6593a3a.part05.bin",
+    "models/siglip_vision.48c6593a3a.part06.bin",
+    "models/siglip_vision.48c6593a3a.part07.bin",
+    "models/siglip_vision.48c6593a3a.part08.bin"
+   ],
+   "size": 69825759,
+   "sha256": "48c6593a3ae0ae2b44e81cc80dc7dc004c07f90442bb9e7afa2d557b8b4ce406"
   },
   "ocr_det": {
    "name": "PP-OCRv3 text detector",
@@ -133,21 +218,6 @@
    ],
    "size": 10690752,
    "sha256": "897a3ededb38fee0dae2c1ccee38241f37df202c9509e3abca02e9217c5ee615"
-  }
- },
- "vocab": {
-  "labels": "vocab/labels.json",
-  "emb": "vocab/label_emb.f16",
-  "meta": "vocab/vocab_meta.json",
-  "parents": {
-   "coco": [
-    "vocab/det_coco.json",
-    "vocab/det_coco_emb.f16"
-   ],
-   "o365": [
-    "vocab/det_o365.json",
-    "vocab/det_o365_emb.f16"
-   ]
   }
  }
 }

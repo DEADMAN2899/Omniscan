@@ -1,0 +1,6 @@
+{
+ "dim": 768,
+ "logit_scale": 111.83257293701172,
+ "count": 23550,
+ "model": "google/siglip2-base-patch32-256"
+}

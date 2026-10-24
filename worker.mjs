@@ -137,9 +137,9 @@ async function detect({ bitmap, model, threshold }) {
 }
 
 /* ---------------- image embeddings (TinyCLIP) ---------------- */
-async function embed({ crops }) {
-  const sess = await loadModel("clip");
-  const m = S.manifest.models.clip, N = m.input, mean = m.mean, std = m.std, plane = N * N;
+async function embed({ crops, model = "clip" }) {
+  const sess = await loadModel(model);
+  const m = S.manifest.models[model], N = m.input, mean = m.mean, std = m.std, plane = N * N;
   const [c, g] = canvasOf(N, N);
   const embs = [], t0 = performance.now();
   for (const bmp of crops) {

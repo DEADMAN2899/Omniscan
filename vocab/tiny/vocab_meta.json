@@ -1,0 +1,6 @@
+{
+ "dim": 512,
+ "logit_scale": 50.00431823730469,
+ "count": 2852,
+ "model": "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M"
+}

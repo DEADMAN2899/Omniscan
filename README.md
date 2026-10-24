@@ -18,7 +18,9 @@ Open the HTTPS link in Safari. Add to Home Screen for a full-screen app that als
 |---|---|---|---|
 | Live detection | D-FINE N, COCO 80 classes, 416 or 640 px | every frame (one in flight, stale frames dropped) | Apache-2.0 |
 | Deep scan | D-FINE S, Objects365 (365 classes) | when you hold a frame or open a photo | Apache-2.0 |
-| Identification | TinyCLIP ViT-40M/32 image encoder (int8 per-channel) against 2,853 precomputed label embeddings | on sharp crops of stable tracks, about every 1.5 s per object | MIT |
+| Identification, Best (default) | SigLIP 2 B/32 image encoder (4-bit weights) against about 23,500 names: the curated list plus every concrete WordNet noun except people and places | on sharp crops of stable tracks | Apache-2.0 |
+| Identification, Fast | TinyCLIP ViT-40M/32 image encoder (int8 per-channel) against the curated 2,852 names | same, about 7× faster per crop | MIT |
+| Last resort | Claude, on request or automatically for low-confidence objects | one crop per request, with consent | — |
 | Text | PP-OCRv3 detector + recognizer (via RapidOCR) | on hold, or "Read text" | Apache-2.0 |
 | Barcodes | zxing-cpp (zxing-wasm) | every 0.7 s live, full resolution on hold | Apache-2.0 |
 | Runtime | ONNX Runtime Web 1.29 (WebAssembly, optional WebGPU) | worker | MIT |
@@ -29,8 +31,9 @@ How labels are decided:
 2. **Sharpest view.** Each track keeps its sharpest crop (Laplacian variance). That crop is what identification uses and what Ask Omni sends.
 3. **Constrained refinement.** The image embedding is compared only with vocabulary labels whose text embedding is close (cosine ≥ 0.8) to the detector's class, plus the class itself. This stops "person → unicycle" style errors that unconstrained CLIP makes on small crops. Embeddings are averaged over views, weighted by sharpness.
 4. **Taught objects.** "Name it" stores the track's embedding with its class. A taught object matches at cosine ≥ 0.88 with a 0.02 margin over other taught objects, and only for the same kind of thing unless the views are nearly identical. "Wrong label" adds a correction the same way.
-5. **Tap to identify.** Tapping a spot with no small box searches the whole vocabulary (all, objects, products, or plants & animals).
-6. **Text and barcodes** are attached to the objects they sit on and included as evidence. Barcode numbers can be looked up on Open Food Facts (number only, never images).
+5. **Claude for everything else.** "Ask Claude what this is" sends one crop and returns the most specific name it can (brand and model, species, part). "Remember as …" turns that answer into a taught object, so the phone recognizes it on its own afterwards. "Ask Claude automatically" does this in the background for objects the phone isn't sure about (Session OK mode only, one request every 5 s, 40 per session).
+6. **Tap to identify.** Tapping a spot with no small box searches the whole vocabulary (all, objects, products, or plants & animals).
+7. **Text and barcodes** are attached to the objects they sit on and included as evidence. Barcode numbers can be looked up on Open Food Facts (number only, never images).
 
 People are detected but never identified.
 

@@ -1,7 +1,7 @@
 // OmniScan service worker: makes the app and its downloaded models work offline.
 // App files: network first (so new deploys show up), cached copy when offline.
 // Model, runtime and vocabulary files: content-addressed, so cache first, kept across deploys.
-const SHELL = "omniscan-shell-20261024010654";
+const SHELL = "omniscan-shell-20261024015357";
 const ASSETS = "omniscan-assets-v1";
 const SHELL_FILES = ["./", "index.html", "app.js", "worker.mjs", "styles.css", "fonts/fonts.css", "manifest.webmanifest",
   "icon-192.png", "vendor/ort/ort.wasm.min.mjs", "vendor/ort/ort-wasm-simd-threaded.mjs", "vendor/zxing/zxing.mjs", "models/manifest.json"];
