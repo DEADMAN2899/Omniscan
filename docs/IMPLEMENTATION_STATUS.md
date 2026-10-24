@@ -2,7 +2,16 @@
 
 Updated 2026-10-23.
 
-## Done in this pass
+## 2026-10-24: wider identification
+
+- Vocabulary grown from 2,852 to 23,550 names (all concrete WordNet nouns except people, places and body parts; crude terms filtered).
+- SigLIP 2 B/32 image encoder added as the default identifier (4-bit weights, 70 MB; 0.955 mean cosine to fp32). TinyCLIP stays as the fast option with the curated vocabulary, because TinyCLIP's text space couldn't handle the large list (it paired a refrigerator with "damping off fungus").
+- Hubness bias per label (mean similarity over 631 calibration crops) subtracted at 0.75 weight for SigLIP.
+- Teaching thresholds measured per model: TinyCLIP 0.88, SigLIP 0.92 (different objects of the same class reach 0.917 at the 95th percentile). SigLIP now tells two similar cats apart.
+- Claude fallback: "Ask Claude what this is", "Remember as …", and an automatic mode for low-confidence objects (Session OK only, 1 request / 5 s, 40 per session).
+- Tested headless with SigLIP: identification about 490 ms per crop on 2 shared vCPUs, no console errors, GitHub Pages-style serving isolated correctly.
+
+## Done in the previous pass
 
 - Detector replaced: COCO-SSD Lite → D-FINE N (live) and D-FINE S Objects365 (deep scan on hold).
 - Multi-frame class voting and sharpest-crop selection per track.
