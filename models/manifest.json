@@ -1,0 +1,153 @@
+{
+ "version": "20261024010654",
+ "runtime": {
+  "ort-wasm": {
+   "parts": [
+    "vendor/ort/ort-wasm-simd-threaded.ec8580a9d7.part00.bin",
+    "vendor/ort/ort-wasm-simd-threaded.ec8580a9d7.part01.bin"
+   ],
+   "size": 13961845,
+   "sha256": "ec8580a9d7b9476ceee52e10a7f94124e4dc71a019d666ed6d4726697c109a4d"
+  },
+  "ort-jsep": {
+   "parts": [
+    "vendor/ort/ort-wasm-simd-threaded.jsep.db816fadba.part00.bin",
+    "vendor/ort/ort-wasm-simd-threaded.jsep.db816fadba.part01.bin",
+    "vendor/ort/ort-wasm-simd-threaded.jsep.db816fadba.part02.bin",
+    "vendor/ort/ort-wasm-simd-threaded.jsep.db816fadba.part03.bin"
+   ],
+   "size": 27797172,
+   "sha256": "db816fadbab47a755170c08f933961e231412ac17f5981f9a62e519708a44dea"
+  },
+  "zxing": {
+   "parts": [
+    "vendor/zxing/zxing_reader.aecc1876de.part00.bin"
+   ],
+   "size": 966895,
+   "sha256": "aecc1876de036c62c8419f67a5e1a16b1698a325bcd190aa84810d516e263931"
+  }
+ },
+ "models": {
+  "det_fast": {
+   "name": "D-FINE N",
+   "task": "object_detection",
+   "classes": 80,
+   "labelSet": "coco",
+   "source": "ustc-community/dfine-nano-coco",
+   "license": "Apache-2.0",
+   "input": 640,
+   "labels": "vocab/det_coco.json",
+   "parts": [
+    "models/dfine_n_coco.9b23797536.part00.bin",
+    "models/dfine_n_coco.9b23797536.part01.bin"
+   ],
+   "size": 15432322,
+   "sha256": "9b2379753624b44905df1b6f5b86c6f9b760708d92fdb867d6508ecaf6087a15"
+  },
+  "det_fast416": {
+   "name": "D-FINE N (416 px, faster)",
+   "task": "object_detection",
+   "classes": 80,
+   "labelSet": "coco",
+   "source": "ustc-community/dfine-nano-coco",
+   "license": "Apache-2.0",
+   "input": 416,
+   "labels": "vocab/det_coco.json",
+   "parts": [
+    "models/dfine_n_coco_416.6e78161522.part00.bin",
+    "models/dfine_n_coco_416.6e78161522.part01.bin"
+   ],
+   "size": 15432322,
+   "sha256": "6e78161522812286ddec0e8d6a3fab9b2c268ab91dcdc4bd0d97b5773383e635"
+  },
+  "det_deep": {
+   "name": "D-FINE S Objects365",
+   "task": "object_detection",
+   "classes": 365,
+   "labelSet": "o365",
+   "source": "ustc-community/dfine-small-obj365",
+   "license": "Apache-2.0",
+   "input": 640,
+   "labels": "vocab/det_o365.json",
+   "parts": [
+    "models/dfine_s_obj365.ec6d5d246d.part00.bin",
+    "models/dfine_s_obj365.ec6d5d246d.part01.bin",
+    "models/dfine_s_obj365.ec6d5d246d.part02.bin",
+    "models/dfine_s_obj365.ec6d5d246d.part03.bin",
+    "models/dfine_s_obj365.ec6d5d246d.part04.bin",
+    "models/dfine_s_obj365.ec6d5d246d.part05.bin"
+   ],
+   "size": 42096298,
+   "sha256": "ec6d5d246d5523a00b0ec318d09f3017595ca8603b0f954ec5af37a5c62aa787"
+  },
+  "clip": {
+   "name": "TinyCLIP ViT-40M/32",
+   "task": "image_embedding",
+   "source": "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M",
+   "license": "MIT",
+   "input": 224,
+   "mean": [
+    0.48145466,
+    0.4578275,
+    0.40821073
+   ],
+   "std": [
+    0.26862954,
+    0.26130258,
+    0.27577711
+   ],
+   "quantization": "int8 per-channel (MatMul)",
+   "parts": [
+    "models/clip_vision.44ef52f066.part00.bin",
+    "models/clip_vision.44ef52f066.part01.bin",
+    "models/clip_vision.44ef52f066.part02.bin",
+    "models/clip_vision.44ef52f066.part03.bin",
+    "models/clip_vision.44ef52f066.part04.bin",
+    "models/clip_vision.44ef52f066.part05.bin"
+   ],
+   "size": 46101585,
+   "sha256": "44ef52f066f5c9e6fd3242618676bb5a927af78b693d6bf6d7f4ef1434ae49ab"
+  },
+  "ocr_det": {
+   "name": "PP-OCRv3 text detector",
+   "task": "ocr",
+   "source": "PaddleOCR via RapidOCR",
+   "license": "Apache-2.0",
+   "webgpu": false,
+   "parts": [
+    "models/ocr_det.3439588c03.part00.bin"
+   ],
+   "size": 2432880,
+   "sha256": "3439588c030faea393a54515f51e983d8e155b19a2e8aba7891934c1cf0de526"
+  },
+  "ocr_rec": {
+   "name": "PP-OCRv3 text recognizer",
+   "task": "ocr",
+   "source": "PaddleOCR via RapidOCR",
+   "license": "Apache-2.0",
+   "keys": "vocab/ocr_keys.txt",
+   "webgpu": false,
+   "parts": [
+    "models/ocr_rec.897a3ededb.part00.bin",
+    "models/ocr_rec.897a3ededb.part01.bin"
+   ],
+   "size": 10690752,
+   "sha256": "897a3ededb38fee0dae2c1ccee38241f37df202c9509e3abca02e9217c5ee615"
+  }
+ },
+ "vocab": {
+  "labels": "vocab/labels.json",
+  "emb": "vocab/label_emb.f16",
+  "meta": "vocab/vocab_meta.json",
+  "parents": {
+   "coco": [
+    "vocab/det_coco.json",
+    "vocab/det_coco_emb.f16"
+   ],
+   "o365": [
+    "vocab/det_o365.json",
+    "vocab/det_o365_emb.f16"
+   ]
+  }
+ }
+}
